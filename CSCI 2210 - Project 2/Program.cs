@@ -68,13 +68,10 @@ namespace CSCI_2210___Project_2
             switch (answer)
             {
                 case "INSERTION":
-                    // Load or generate intdata here
-                    // For example, you can load data from a file as follows:
-                    intdata = fileLoader.LoadIntTestData("RandomOrder_100.txt");
-
                     Stopwatch stopwatch = new Stopwatch();
                     stopwatch.Start();
                     InsertionSort<int> insertionSort = new InsertionSort<int>();
+                    
                     List<int> sortedStuffIns = insertionSort.Sort(intdata);
 
                     Console.WriteLine("Sorted Stuff:");
@@ -92,13 +89,11 @@ namespace CSCI_2210___Project_2
                     Console.WriteLine($"Accumulator Value: {accumulator}");
                     break;
                 case "MERGE":
-                    // Load or generate intdata here
-                    // For example, you can load data from a file as follows:
-                    intdata = fileLoader.LoadIntTestData("RandomOrder_100.txt");
 
                     Stopwatch stopwatch1 = new Stopwatch();
                     stopwatch1.Start();
                     MergeSort<int> mergeSort = new MergeSort<int>();
+                    
                     mergeSort.Sort(intdata);
 
                     Console.WriteLine("Sorted Stuff:");
