@@ -9,6 +9,92 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Test Data\AlmostInOrder_10.txt" />
+    <None Remove="Test Data\AlmostInOrder_100.txt" />
+    <None Remove="Test Data\AlmostInOrder_1000.txt" />
+    <None Remove="Test Data\AlmostInOrder_10000.txt" />
+    <None Remove="Test Data\AlmostInOrder_100000.txt" />
+    <None Remove="Test Data\InOrder_10.txt" />
+    <None Remove="Test Data\InOrder_100.txt" />
+    <None Remove="Test Data\InOrder_1000.txt" />
+    <None Remove="Test Data\InOrder_10000.txt" />
+    <None Remove="Test Data\InOrder_100000.txt" />
+    <None Remove="Test Data\RandomOrder_10.txt" />
+    <None Remove="Test Data\RandomOrder_100.txt" />
+    <None Remove="Test Data\RandomOrder_1000.txt" />
+    <None Remove="Test Data\RandomOrder_10000.txt" />
+    <None Remove="Test Data\RandomOrder_100000.txt" />
+    <None Remove="Test Data\ReverseOrder_10.txt" />
+    <None Remove="Test Data\ReverseOrder_100.txt" />
+    <None Remove="Test Data\ReverseOrder_1000.txt" />
+    <None Remove="Test Data\ReverseOrder_10000.txt" />
+    <None Remove="Test Data\ReverseOrder_100000.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Test Data\AlmostInOrder_10.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\AlmostInOrder_100.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\AlmostInOrder_1000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\AlmostInOrder_10000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\AlmostInOrder_100000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\InOrder_10.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\InOrder_100.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\InOrder_1000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\InOrder_10000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\InOrder_100000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\RandomOrder_10.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\RandomOrder_100.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\RandomOrder_1000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\RandomOrder_10000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\RandomOrder_100000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\ReverseOrder_10.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\ReverseOrder_100.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\ReverseOrder_1000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\ReverseOrder_10000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test Data\ReverseOrder_100000.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="NewFolder1\" />
   </ItemGroup>
 

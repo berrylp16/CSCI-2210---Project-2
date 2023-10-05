@@ -11,203 +11,115 @@ using System.Linq;
 using System.Globalization;
 using System.Collections.Concurrent;
 using System.IO.Pipes;
+using System.Diagnostics;
 
-public interface ISort<T> where T : IComparable<T>
+namespace CSCI_2210___Project_2
 {
-    public void Sort(List<T> stuff);
-}
-class MergeSort<T> : ISort<T> where T : IComparable<T>
-{
-    public List<T> Sort(List<T> stuff)
+
+    public interface ISort<T> where T : IComparable<T>
     {
-        if (stuff.Count <= 1)
-        {
-            return stuff;
-        }
-
-        int middle = stuff.Count / 2;
-        List<T> left = new List<T>();
-        List<T> right = new List<T>();
-
-        for (int i = 0; i < middle; i++)
-        {
-            left.Add(stuff[i]);
-        }
-
-        for (int i = middle; i < stuff.Count; i++)
-        {
-            right.Add(stuff[i]);
-        }
-
-        left = Sort(left);
-        right = Sort(right);
-
-        return Merge(left, right);
+        public void Sort(List<T> stuff);
     }
 
-    private List<T> Merge(List<T> left, List<T> right)
+    class Program
     {
-        List<T> result = new List<T>();
-        int leftIndex = 0;
-        int rightIndex = 0;
-
-        while (leftIndex < left.Count && rightIndex < right.Count)
+        static void Main(string[] args)
         {
-            if (left[leftIndex].CompareTo(right[rightIndex]) <= 0)
+            List<string> testFiles = new List<string>
+        {
+            "./Test Data/RandomOrder_10.txt",
+            "./Test Data/RandomOrder_100.txt",
+            "./Test Data/RandomOrder_1000.txt",
+            "./Test Data/RandomOrder_10000.txt",
+            "./Test Data/RandomOrder_100000.txt",
+            "./Test Data/ReverseOrder_10.txt",
+            "./Test Data/ReverseOrder_100.txt",
+            "./Test Data/ReverseOrder_1000.txt",
+            "./Test Data/ReverseOrder_10000.txt",
+            "./Test Data/ReverseOrder_100000.txt",
+            "./Test Data/InOrder_10.txt",
+            "./Test Data/InOrder_100.txt",
+            "./Test Data/InOrder_1000.txt",
+            "./Test Data/InOrder_10000.txt",
+            "./Test Data/InOrder_100000.txt",
+            "./Test Data/AlmostInOrder_10.txt",
+            "./Test Data/AlmostInOrder_100.txt",
+            "./Test Data/AlmostInOrder_1000.txt",
+            "./Test Data/AlmostInOrder_10000.txt",
+            "./Test Data/AlmostInOrder_100000.txt"
+        };
+
+            DataFileLoader fileLoader = new DataFileLoader();
+
+            foreach (string fileName in testFiles)
             {
-                result.Add(left[leftIndex]);
-                leftIndex++;
+                Console.WriteLine($"File Name: {fileName}");
+                List<int> loadedData = fileLoader.LoadIntTestData(fileName);
+
+                Console.WriteLine($"Loaded {loadedData.Count} integers from the file.");
+                Console.WriteLine();
             }
-            else
+
+            List<int> intdata = new List<int>();
+
+            // switch
+            Console.WriteLine("Which sorting method would you like to see? (INSERTION or MERGE or BOOK)");
+            string answer = Console.ReadLine().ToUpper();
+            switch (answer)
             {
-                result.Add(right[rightIndex]);
-                rightIndex++;
-            }
-        }
+                case "INSERTION":
+                    // Load or generate intdata here
+                    // For example, you can load data from a file as follows:
+                    intdata = fileLoader.LoadIntTestData("RandomOrder_100.txt");
 
-        while (leftIndex < left.Count)
-        {
-            result.Add(left[leftIndex]);
-            leftIndex++;
-        }
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
+                    InsertionSort<int> insertionSort = new InsertionSort<int>();
+                    List<int> sortedStuffIns = insertionSort.Sort(intdata);
 
-        while (rightIndex < right.Count)
-        {
-            result.Add(right[rightIndex]);
-            rightIndex++;
-        }
-
-        return result;
-    }
-
-    void ISort<T>.Sort(List<T> stuff)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-    internal class Program
-    {
-    public class DataFileLoader
-    {
-        public List<int> LoadIntTestData(string filePath)
-        {
-            List<int> intData = new List<int>();
-
-            try
-            {
-                using (StreamReader reader = new StreamReader(filePath))
-                {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
+                    Console.WriteLine("Sorted Stuff:");
+                    foreach (int item in sortedStuffIns)
                     {
-                        if (int.TryParse(line, out int number))
-                        {
-                            intData.Add(number);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Ignoring non-integer data: {line}");
-                        }
+                        Console.WriteLine(item);
                     }
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine($"File not found at path: {filePath}");
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine($"An error occurred while reading the file: {e.Message}");
-            }
 
-            return intData;
-        }
-    }
-    class MergeSort<T> : ISort<T> where T : IComparable<T>
-    {
-        public List<T> Sort(List<T> intdata)
-        {
-            if (intdata.Count <= 1)
-            {
-                return intdata;
-            }
+                    stopwatch.Stop();
+                    long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+                    long accumulator = 0;
+                    accumulator += elapsedMilliseconds;
 
-            int middle = intdata.Count / 2;
-            List<T> left = new List<T>();
-            List<T> right = new List<T>();
+                    Console.WriteLine($"Elapsed Time: {elapsedMilliseconds} milliseconds");
+                    Console.WriteLine($"Accumulator Value: {accumulator}");
+                    break;
+                case "MERGE":
+                    // Load or generate intdata here
+                    // For example, you can load data from a file as follows:
+                    intdata = fileLoader.LoadIntTestData("RandomOrder_100.txt");
 
-            for (int i = 0; i < middle; i++)
-            {
-                left.Add(intdata[i]);
-            }
+                    Stopwatch stopwatch1 = new Stopwatch();
+                    stopwatch1.Start();
+                    MergeSort<int> mergeSort = new MergeSort<int>();
+                    mergeSort.Sort(intdata);
 
-            for (int i = middle; i < intdata.Count; i++)
-            {
-                right.Add(intdata[i]);
-            }
-
-            left = Sort(left);
-            right = Sort(right);
-
-            return Merge(left, right);
-        }
-
-        private List<T> Merge(List<T> left, List<T> right)
-        {
-            List<T> result = new List<T>();
-            int leftIndex = 0;
-            int rightIndex = 0;
-
-            while (leftIndex < left.Count && rightIndex < right.Count)
-            {
-                if (left[leftIndex].CompareTo(right[rightIndex]) <= 0)
-                {
-                    result.Add(left[leftIndex]);
-                    leftIndex++;
-                }
-                else
-                {
-                    result.Add(right[rightIndex]);
-                    rightIndex++;
-                }
-            }
-
-            while (leftIndex < left.Count)
-            {
-                result.Add(left[leftIndex]);
-                leftIndex++;
-            }
-
-            while (rightIndex < right.Count)
-            {
-                result.Add(right[rightIndex]);
-                rightIndex++;
-            }
-
-            return result;
-        }
-
-        void ISort<T>.Sort(List<T> stuff)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    static void Main(string[] args)
-        {
-            /*string filePath = "RandomOrder_100000";
-            ISort<int> mySort = new MergeSort<int>();
-            List<int> data = LoadIntTestData(filePath);
-            mySort.Sort(data);
-            */
-
-            DataFileLoader dataLoader = new DataFileLoader();
-            string filePath = "RandomOrder_100000";
-            List<int> testData = dataLoader.LoadIntTestData(filePath);
-
-            foreach (int number in testData)
-            {
-                Console.WriteLine(number);
+                    Console.WriteLine("Sorted Stuff:");
+                    foreach (int item in intdata)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    stopwatch1.Stop();
+                    long elapsedMilliseconds1 = stopwatch1.ElapsedMilliseconds;
+                    long accumulator1 = 0;
+                    accumulator1 += elapsedMilliseconds1;
+                    Console.WriteLine($"Elapsed Time: {elapsedMilliseconds1} milliseconds");
+                    Console.WriteLine($"Accumulator Value: {accumulator1}");
+                    break;
+                case "BOOK":
+                    Console.WriteLine("Enter book data here.");
+                    break;
+                default:
+                    Console.WriteLine("Incorrect input.");
+                    break;
             }
         }
     }
+}
